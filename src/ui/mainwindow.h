@@ -37,7 +37,20 @@ public:
 
 protected:
 
-    virtual void closeEvent(QCloseEvent *);
+    virtual void closeEvent(QCloseEvent * event);
+
+private slots:
+
+    void newSequence();
+    void openSequence();
+    void saveSequence();
+    void saveSequenceAs();
+
+    void showAbout();
+
+private:
+
+    void initMenu();
 };
 
 #endif // LSS_UI_MAINWINDOW_H

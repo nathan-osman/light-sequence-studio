@@ -23,6 +23,8 @@
  **/
 
 #include <QCloseEvent>
+#include <QMenu>
+#include <QMenuBar>
 #include <QMessageBox>
 #include <QStatusBar>
 
@@ -31,7 +33,7 @@
 
 MainWindow::MainWindow()
 {
-    setStatusBar(new QStatusBar);
+    initMenu();
     statusBar()->showMessage(tr("Version %1").arg(PROJECT_VERSION));
 
     setWindowTitle(tr("Light Sequence Studio"));
@@ -44,4 +46,39 @@ void MainWindow::closeEvent(QCloseEvent *event)
     } else {
         event->ignore();
     }
+}
+
+void MainWindow::newSequence() {
+    //...
+}
+
+void MainWindow::openSequence() {
+    //...
+}
+
+void MainWindow::saveSequence() {
+    //...
+}
+
+void MainWindow::saveSequenceAs() {
+    //...
+}
+
+void MainWindow::showAbout() {
+    QMessageBox::about(this, tr("About Light Sequence Studio"),
+                       tr("Copyright 2015 - Nathan Osman"));
+}
+
+void MainWindow::initMenu()
+{
+    QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
+    fileMenu->addAction(tr("&New"), this, SLOT(newSequence()));
+    fileMenu->addAction(tr("&Open..."), this, SLOT(openSequence()));
+    fileMenu->addAction(tr("&Save"), this, SLOT(saveSequence()));
+    fileMenu->addAction(tr("Save &As..."), this, SLOT(saveSequenceAs()));
+    fileMenu->addSeparator();
+    fileMenu->addAction(tr("&Quit"), this, SLOT(close()));
+
+    QMenu *helpMenu = menuBar()->addMenu(tr("&Help"));
+    helpMenu->addAction(tr("&About"), this, SLOT(showAbout()));
 }
