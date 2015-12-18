@@ -22,16 +22,22 @@
  * IN THE SOFTWARE.
  **/
 
-#include <QApplication>
+#ifndef LSS_UI_MAINWINDOW_H
+#define LSS_UI_MAINWINDOW_H
 
-#include "ui/mainwindow.h"
+#include <QMainWindow>
 
-int main(int argc, char **argv)
+class MainWindow : public QMainWindow
 {
-    QApplication app(argc, argv);
+    Q_OBJECT
 
-    MainWindow mainWindow;
-    mainWindow.show();
+public:
 
-    return app.exec();
-}
+    MainWindow();
+
+protected:
+
+    virtual void closeEvent(QCloseEvent *);
+};
+
+#endif // LSS_UI_MAINWINDOW_H

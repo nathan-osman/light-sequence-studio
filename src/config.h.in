@@ -22,16 +22,9 @@
  * IN THE SOFTWARE.
  **/
 
-#include <QApplication>
+#ifndef LSS_CONFIG_H
+#define LSS_CONFIG_H
 
-#include "ui/mainwindow.h"
+#define PROJECT_VERSION "${PROJECT_VERSION}"
 
-int main(int argc, char **argv)
-{
-    QApplication app(argc, argv);
-
-    MainWindow mainWindow;
-    mainWindow.show();
-
-    return app.exec();
-}
+#endif // LSS_CONFIG_H

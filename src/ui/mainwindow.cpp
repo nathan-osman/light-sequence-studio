@@ -22,16 +22,26 @@
  * IN THE SOFTWARE.
  **/
 
-#include <QApplication>
+#include <QCloseEvent>
+#include <QMessageBox>
+#include <QStatusBar>
 
-#include "ui/mainwindow.h"
+#include "config.h"
+#include "mainwindow.h"
 
-int main(int argc, char **argv)
+MainWindow::MainWindow()
 {
-    QApplication app(argc, argv);
+    setStatusBar(new QStatusBar);
+    statusBar()->showMessage(tr("Version %1").arg(PROJECT_VERSION));
 
-    MainWindow mainWindow;
-    mainWindow.show();
+    setWindowTitle(tr("Light Sequence Studio"));
+}
 
-    return app.exec();
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (QMessageBox::question(this, tr("Confirm"), tr("Are you sure you want to quit?")) == QMessageBox::Yes) {
+        event->accept();
+    } else {
+        event->ignore();
+    }
 }
